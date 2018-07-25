@@ -28,4 +28,6 @@ After you've been invited to modify this repository, clone it as we did in class
 
 When you're done with the .Rmd document, knit it as a .pdf. Then commit and push both of your .Rmd and .pdf files to the repository. 
 
+See the EXAMPLE_git_submission_marius_larsson.Rmd for an example.
+
 Remember: your submission will be open for everyone to see. 
