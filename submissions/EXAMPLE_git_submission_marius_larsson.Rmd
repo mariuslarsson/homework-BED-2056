@@ -1,0 +1,22 @@
+---
+author: "Marius R. Larsson"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Mandatory homework assignment submission
+
+The plot shows a red heart.
+
+```{r heart plot}
+data <- data.frame(t=seq(0, 2*pi, by=0.1) )
+xfun <- function(t) 16*sin(t)^3
+yfun <- function(t) 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
+data$y <- yfun(data$t)
+data$x <- xfun(data$t)
+
+plot(data$x,data$y, type="l", col="red", lty=2)
+```

@@ -23,9 +23,9 @@ After you've been invited to modify this repository, clone it as we did in class
 ```
 - Create a plot of something interesting or something random. It doesn't really matter as long as you create a plot of some data. You can modify and style it as much or as little as you like.
 - In 1-2 sentences either above or bellow the plot, explain what the plot shows.
-- The document must be knitable!
+- author: your name
 ```
 
-When you're done with the .Rmd document, you will commit and push it to the repository. 
+When you're done with the .Rmd document, knit it as a .pdf. Then commit and push both of your .Rmd and .pdf files to the repository. 
 
 Remember: your submission will be open for everyone to see. 
