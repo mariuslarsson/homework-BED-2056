@@ -1,13 +1,14 @@
 ---
+title: "Mandatory homework assignment submission"
 author: "Marius R. Larsson"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
-
-# Mandatory homework assignment submission
 
 The plot shows a red heart.
 
@@ -18,5 +19,5 @@ yfun <- function(t) 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
 data$y <- yfun(data$t)
 data$x <- xfun(data$t)
 
-plot(data$x,data$y, type="l", col="red", lty=2)
+plot(data$x,data$y, type="l", col="red", lty=2, axes=F, ylab="", xlab="")
 ```
