@@ -21,3 +21,10 @@ data$x <- xfun(data$t)
 
 plot(data$x,data$y, type="l", col="red", lty=2, axes=F, ylab="", xlab="")
 ```
+
+```{r, extending analysis}
+x <- 2
+y <- x*2
+paste(y, "is the highest number in this time series")
+```
+
