@@ -32,7 +32,3 @@ When you're done with the .Rmd document, knit it as a .html. Then commit and pus
 See the EXAMPLE_git_submission_marius_larsson.Rmd for an example.
 
 Remember: your submission will be open for everyone to see. 
-
-Perhaps this fork is better?
-
-What about this?
