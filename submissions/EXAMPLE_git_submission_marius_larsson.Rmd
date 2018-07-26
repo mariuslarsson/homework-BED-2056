@@ -40,6 +40,6 @@ points(y,x, col="red")
 x <- 2
 y <- x*2
 paste(y, "is the highest number in this time series")
-
+123
 ```
 
