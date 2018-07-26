@@ -22,6 +22,7 @@ data$x <- xfun(data$t)
 plot(data$x,data$y, type="l", col="red", lty=2, axes=F, ylab="", xlab="")
 ```
 
+
 ```{r interesting find} 
 
 x <- rnorm(100, 2, 0.5)
@@ -29,5 +30,14 @@ y <- rnorm(100, 50, 0.4)
 plot(x)
 abline(lm(x~y))
 points(y,x, col="red")
+```
+
+```{r, extending analysis}
+#Nice job! -Marius
+
+x <- 2
+y <- x*2
+paste(y, "is the highest number in this time series")
+
 ```
 
