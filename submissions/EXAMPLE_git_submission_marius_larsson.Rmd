@@ -10,7 +10,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-The plot shows a red heart.
+## Figure 1
 
 ```{r heart plot}
 data <- data.frame(t=seq(0, 2*pi, by=0.1) )
@@ -22,5 +22,13 @@ data$x <- xfun(data$t)
 plot(data$x,data$y, type="l", col="red", lty=2, axes=F, ylab="", xlab="")
 ```
 
+The plot shows a red heart.
 
+## Figure 2
 
+```{r, fig.height=2, fig.width=8}
+plot(rnorm(100, mean=0, sd=1), type='l', col="green", lwd=3, main="Is this normal?",
+     axes=F, ylab="", xlab="")
+```
+
+The plot shows 100 normally distributed N(0,1) random numbers

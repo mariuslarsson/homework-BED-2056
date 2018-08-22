@@ -14,6 +14,16 @@ username: your username
 email: your email
 ```
 
+Copy/paste the above lines and change **your name**, **your username** and **your email**
+
+**In the subject field (emnefelt), _only_ write**
+
+```
+github_account
+```
+
+Nothing else. Just copy/paste the above line to the subject field without changing it.
+
 Do this as soon as possible. I have to grant you write permission to this repository.
 
 ## Step 2
@@ -21,8 +31,13 @@ Do this as soon as possible. I have to grant you write permission to this reposi
 After you've been invited to modify this repository, clone it as we did in class (or see lecture notes). You will then create a **new** Rmarkdown document (.Rmd) which you will place in the **submissions** folder. The name of the .Rmd document should be `git_submission_your_name.Rmd`. The .Rmd document should contain the following:
 
 ```
-- Create a plot of something interesting or something random. It doesn't really matter as long as you create a plot of some data. You can modify and style it as much or as little as you like.
+- Set echo in opts_chunk to FALSE
+- A plot of something interesting or something random. It doesn't really matter as long as you create a plot of some data. You can modify and style it as much or as little as you like.
 - In 1-2 sentences either above or bellow the plot, explain what the plot shows.
+- Create a new **line** plot with something different than the previous. This must be a line plot.
+- Change the size of this plot in the chunk options using fig.height and fig.width
+- In 1-2 sentences either above or bellow the plot, explain what the plot shows.
+- Create separate sections for each plot
 - title: "Mandatory homework assignment submission"
 - author: "your name"
 ```
