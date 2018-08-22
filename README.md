@@ -32,12 +32,14 @@ After you've been invited to modify this repository, clone it as we did in class
 
 ```
 - Set echo in opts_chunk to FALSE
-- A plot of something interesting or something random. It doesn't really matter as long as you create a plot of some data. You can modify and style it as much or as little as you like.
-- In 1-2 sentences either above or bellow the plot, explain what the plot shows.
+- Create a plot of something interesting or something random. 
+  It doesn't really matter as long as you create a plot of some data. 
+  You can modify and style it as much or as little as you like.
+- In 1-4 sentences either above or bellow the plot, explain what the plot shows.
 - Create a new **line** plot with something different than the previous. This must be a line plot.
 - Change the size of this plot in the chunk options using fig.height and fig.width
-- In 1-2 sentences either above or bellow the plot, explain what the plot shows.
-- Create separate sections for each plot
+- In 1-4 sentences either above or bellow the plot, explain what the plot shows.
+- Create separate sections for each plot using double hashtags
 - title: "Mandatory homework assignment submission"
 - author: "your name"
 ```
