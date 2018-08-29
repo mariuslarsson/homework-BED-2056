@@ -20,6 +20,9 @@ data$y <- yfun(data$t)
 data$x <- xfun(data$t)
 
 plot(data$x,data$y, type="l", col="red", lty=2, axes=F, ylab="", xlab="")
+#this is bad work
+1+1
+#more accurate
 ```
 
 The plot shows a red heart.
