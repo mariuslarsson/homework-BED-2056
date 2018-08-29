@@ -21,7 +21,6 @@ data$x <- xfun(data$t)
 
 plot(data$x,data$y, type="l", col="red", lty=2, axes=F, ylab="", xlab="")
 
-lines(c(1:10))
 
 ```
 
