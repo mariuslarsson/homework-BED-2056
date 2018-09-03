@@ -34,11 +34,3 @@ plot(rnorm(100, mean=0, sd=1), type='l', col="green", lwd=3, main="Is this norma
 ```
 
 The plot shows 100 normally distributed N(0,1) random numbers
-
-## figure 3
-
-```{r}
-plot(0,0)
-```
-
-This is a nice plot
