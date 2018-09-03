@@ -41,3 +41,4 @@ The plot shows 100 normally distributed N(0,1) random numbers
 plot(0,0)
 ```
 
+This is a nice plot
