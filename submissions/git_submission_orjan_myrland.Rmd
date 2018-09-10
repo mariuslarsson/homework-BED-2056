@@ -13,7 +13,7 @@ editor_options:
 knitr::opts_chunk$set(echo = FALSE, fig.width=8, fig.height=8)
 require(leaflet)
 require(knitr)
-```
+``` 
 
 ```{r data_get}
 stavangertoalett <- read.csv("~/Desktop/bed-2056/homework-BED-2056/Datafiles/copenitoffentligetoalett.csv")
