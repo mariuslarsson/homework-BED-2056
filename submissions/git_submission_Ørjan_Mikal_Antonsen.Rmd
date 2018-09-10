@@ -1,0 +1,10 @@
+---
+title: "git_submission_Ørjan_Mikal__Antonsen"
+author: "Ørjan Mikal Antonsen"
+date: "10 september 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
