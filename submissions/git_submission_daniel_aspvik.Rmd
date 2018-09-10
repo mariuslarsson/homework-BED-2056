@@ -1,0 +1,17 @@
+---
+title: "git_submission_daniel_aspvik"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+author: "Daniel Aspvik"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r kode}
+
+```
+
+
