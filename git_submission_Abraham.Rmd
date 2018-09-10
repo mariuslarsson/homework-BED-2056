@@ -1,0 +1,33 @@
+---
+title: "Mandatory homework assigment submission"
+author: "Abraham. G. Habtai"
+date: "10 september 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Airquality
+```{r}
+names(airquality)
+plot(airquality$Month,airquality$Temp)  
+```
+
+
+*Øverig data reflekterer tempratur for denne måneden*
+
+### Mtcars
+```{r fig.height=5, fig.width=10}
+names(mtcars)
+plot(mtcars$wt, mtcars$mpg, main="Mtcars", 
+   xlab="Car Weight ", ylab="Miles Per Gallon ", pch=20, type="l") 
+```
+
+
+
+*miles per gallon in correlation to the car weight*
+
+
+
