@@ -19,7 +19,7 @@ require(knitr)
 stavangertoalett <- read.csv("~/Desktop/bed-2056/homework-BED-2056/Datafiles/copenitoffentligetoalett.csv")
 ```
 
-#Public toilets - Stavanger municipality 
+#Public toilets - Stavanger municipality  
 ##Map
 ```{r}
 m <- leaflet() %>%
