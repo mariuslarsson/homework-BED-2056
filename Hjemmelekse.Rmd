@@ -1,0 +1,31 @@
+---
+title: "Mandatory homework assignment submission"
+author: "Adrian Hellevangsdal"
+date: "10 september 2018"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+getwd()
+
+x <- c(1,2,3,4,5,6,7,8,9,10)
+y <- c(2,4,6,8,10,11,13,16,18,21)
+```
+##First plot
+```{r fig.height= 5, fig.width= 10}
+plot(x,y)
+```
+
+Mitt plot er helt tilfeldig, Y kan være en ting som vokser over x tid. 
+
+##line plot
+```{r fig.height=5, fig.width=10}
+plot(x,y, type="l")
+
+```
+
+Line plot bruker akkurat samme data som tidligere. Dataen er fortsatt tilfeldig. 
+
