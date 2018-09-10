@@ -16,7 +16,7 @@ require(knitr)
 ```
 
 ```{r data_get}
-stavangertoalett <- read.csv("~/Desktop/bed-2056/homework-BED-2056/copenitoffentligetoalett.csv")
+stavangertoalett <- read.csv("~/homework-BED-2056/Datafiles/copenitoffentligetoalett.csv")
 ```
 
 #Public toilets - Stavanger municipality 
