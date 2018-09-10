@@ -1,0 +1,43 @@
+---
+title: "Mandatory homework assignment submission"
+author: "Ørjan Myrland"
+date: "10.09.2018"
+output:
+  html_document: default
+  pdf_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width=8, fig.height=8)
+require(leaflet)
+require(knitr)
+``` 
+
+```{r data_get}
+stavangertoalett <- read.csv("~/Desktop/bed-2056/homework-BED-2056/Datafiles/copenitoffentligetoalett.csv")
+```
+
+#Public toilets - Stavanger municipality  
+##Map
+```{r}
+m <- leaflet() %>%
+  addTiles() %>%  
+  addMarkers(lng=c(stavangertoalett[,10]), lat=c(stavangertoalett[,9]), popup="Stavanger offentlige toaletter")
+m 
+```
+This interactive map shows the exact geolocation of all the public toilets in the municipality of Stavanger. 
+
+##Price
+```{r}
+plot(stavangertoalett[,3], type='l', main="Pris per toalett", 
+     xlab = "Plassering", ylab = "Pris",
+     xlim=c(0,15), ylim=c(0, 15))
+     
+```
+
+This lineplot shows the price for the different toilets in the municipality of Stavanger.
+
+
+

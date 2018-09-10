@@ -23,9 +23,9 @@ ggplot(cars, aes(x = speed, y = dist))+ geom_dotplot() +ggtitle("Speed of cars a
 
 ##
 
-```{r graph_avocado, fig.height= 3, fig.width= 7, message = FALSE}
+```{r graph_mtcars, fig.height= 3, fig.width= 7, message = FALSE}
 
 
 
-ggplot(mtcars , aes(x = hp , y = mpg, group=1))+ geom_line() +ggtitle("Miles per gallon vs horsepower")
+ggplot(mtcars , aes(x = hp , y = mpg, group=1))+ geom_line() +ggtitle("Miles per gallon vs horsepower") 
 ```
