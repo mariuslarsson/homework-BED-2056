@@ -1,0 +1,26 @@
+---
+title: "Mandatory homework assignment submission"
+author: "Even Grindstad Brovold"
+date: "10 september 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##Plot av "cars"
+```{r cars, }
+
+plot(cars$speed, cars$dist)
+```
+
+Her er en oversikt over sammenhengen mellom fart og bremselengde hos ulike biler testet på 1920-tallet.
+
+
+##"Line-plot" av cars
+```{r, fig.height=10, fig.height=5}
+plot(cars$speed, cars$dist, type="l")
+```
+
+Her har vi nå en mer oversiktlig plot av sammenhengen mellom fart og bremselengde hos ulike biler, i testen fra 1920-tallet.
