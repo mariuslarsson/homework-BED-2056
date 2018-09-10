@@ -1,0 +1,23 @@
+---
+title: "Git Submission av Martine"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown
+
+###Plot 1 
+
+```{r}
+plot1
+```
+
+###Plot 2
+
+```{r}
+plot2
+```
+
