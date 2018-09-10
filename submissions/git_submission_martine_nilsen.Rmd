@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## R Markdown
 
+<<<<<<< HEAD
 ###Plot 1 
 
 ```{r}
@@ -19,5 +20,25 @@ plot1
 
 ```{r}
 plot2
+=======
+###Plot 1 - Airquality  
+
+```{r}
+plot(airquality)
+?airquality
+
+plot(airquality$Ozone, airquality$Temp)
+
+
+```
+This is a plot that shows airquality in new york. viser sammenheng mellom ozone in parts per billion from 1300 to 1500 hours at Roosevelt Island and maximum daily temperature
+
+###Plot 2
+
+
+```{r}
+plot(0.0)
+
+>>>>>>> c647d90025c4e48b774f65145ef0e37e9e3cd130
 ```
 
