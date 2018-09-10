@@ -6,5 +6,21 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+AirPassengers
 ```
+
+## Scatter plot
+Månedlig data på flypassasjerer i scatter plot.
+```{r, fig..height=10, fig.width=10}
+plot(AirPassengers,
+     type="p", xlab="Month", ylab="Year")
+```
+
+## Linje plot
+Månedlig data på flypassasjerer i en linje plot.
+```{r, fig.height=5, fig.width=15}
+plot(AirPassengers, 
+     type="l", xlab="Month", ylab="Year")
+```
+
