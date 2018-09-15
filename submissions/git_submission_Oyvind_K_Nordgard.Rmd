@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(readxl)
 stockton5 <- read_excel("D:/Rstudio/Econometrics/stockton5.xlsx")
 QEC_14.09 <- read_excel("D:/Rstudio/Econometrics/QEC.xlsx")
