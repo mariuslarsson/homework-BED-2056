@@ -1,0 +1,37 @@
+---
+title: "Mandatory homework assignment submission"
+author: "Oyvind Nordgard"
+date: "15 september 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+stockton5 <- read_excel("D:/Rstudio/Econometrics/stockton5.xlsx")
+QEC_14.09 <- read_excel("D:/Rstudio/Econometrics/QEC.xlsx")
+```
+
+## Plot of housingprices and age
+
+```{r}
+
+plot(stockton5$age, stockton5$sprice, xlab = "Age", ylab = "Price")
+```
+
+- Above we see a plot of how the the price of houses corresponds with age. 
+
+
+
+
+
+## Intraday movement 14.09.2018 of stock Questerre Energy Corporation(QEC)
+
+
+```{r fig.height = 6, fig.widt = 8, fig.align = "center"}
+plot(QEC_14.09$`Questerre Energy Corporation`, QEC_14.09$Pris, type = "l", xlab = "Time", ylab = "Price")
+```
+
+
+
+- Above is the plot of intraday movement of the QEC. During the day the stock returned **5,52%**. 
