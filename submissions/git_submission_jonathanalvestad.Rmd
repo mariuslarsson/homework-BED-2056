@@ -5,19 +5,28 @@ date: "17 september 2018"
 output: html_document
 ---
 
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(signal)
+library(readxl)
 ```
 
 
-```{r cars}
-plot(pressure)
+
+```{r osebx, echo=FALSE}
+osebx <- read_excel("../data/osebx.xlsx", col_types = c("date", 
+    "numeric", "skip", "skip", "numeric"))
+View(osebx)
+plot(osebx$OSEBX,osebx$Siste,xlab = "Date",ylab = "Daily closing price OSEBX(NOK)", type = 'l')
 ```
 
-## The above graph shows the relationship between temperature and pressure, and we can see that the pressure is going up exponentially with respect to the temperature. 
- 
-```{r pressure, echo=FALSE, fig.width=6, fig.height=8}
-plot(sleep$extra,sleep$group, xlab="extra	numeric	increase in hours of sleep",ylab="group	factor	drug given", pch=15)
+## Daily OSEBX closing prices from 1997 to present, in Norwegian Kroner.
+
+```{r pressure, echo=FALSE, fig.width=8, fig.height=5}
+ch <- chirp(seq(0, 0.6, len=10000))
+plot(ch, xlab = "Frequency (Hz)", ylab = "Amplitude", type = "l")
 ```
 
-## Here we see the small results of a study, in which drugs given result in difference in extra sleep. 
+## The chirp signal, which is typically used in signal processing for detecting signals of unkonw frequency.
