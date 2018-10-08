@@ -1,0 +1,126 @@
+---
+title: "Task_4 Web_Scraping"
+author: "Abraham. G. Habtai"
+date: "8 oktober 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rm(list=ls())
+getwd()
+setwd("C:/Users/Abraham/Documents/Github/homework-BED-2056")
+
+library(rvest)
+library(tidyverse)
+library(rlist)
+library(plyr)  
+```
+
+# Web Scraping
+
+**Specifying the url for desired website to be scrapped**
+```{r}
+url <-"https://w2.brreg.no/kunngjoring/kombisok.jsp?datoFra=01.01.2018&datoTil=08.10.2018&id_region=100&id_fylke=19&id_kommune=-+-+-&id_niva1=51&id_niva2=-+-+-&id_bransje1=0"
+```
+
+**Reading & checking the HTML code from the website**
+```{r}
+Webpage <- read_html(url)
+str(Webpage)
+```
+**Using CSS selectors to scrap the kunngjorings section**
+```{r}
+Kunngjorings_Type_html<- html_nodes(Webpage,"p a")
+```
+
+**Converting the title data to text**, *and changing class to factor & checking*
+```{r}
+Kunngjorings_Type <- html_text(Kunngjorings_Type_html)
+Kunngjorings_Type<-factor(Kunngjorings_Type)
+head(Kunngjorings_Type)
+tail(Kunngjorings_Type)
+str(Kunngjorings_Type)
+```
+
+** Using CSS selectors to scrap the dato section** &
+
+*converting to text* &
+
+*Converting "dato" from charachter to date format*
+
+```{r}
+dato1<-html_nodes(Webpage,"tr~ tr+ tr td:nth-child(6) p")
+dato<-html_text(dato1)
+head(dato)
+dato<-as.Date(dato, format = "%d.%m.%Y")
+str(dato)
+
+```
+
+**Using CSS selectors to scrap the digits section**. Then converting it to text
+```{r}
+digits_html<-html_nodes(Webpage,"td:nth-child(4) p")
+#converting
+digits<-html_text(digits_html)
+head(digits)
+str(digits)
+```
+
+*Data-Preprocessing: removing extra space in digits*
+```{r}
+digits<-str_replace_all(string= digits, pattern=" ", repl="")
+View(digits)
+```
+
+*converting from charcter to numeric*. I have skipped this part do to the fact, that the value of the numbers here is to seprate charcters from companies
+```{r}
+digits<-as.numeric(digits)
+View(digits)
+str(digits)
+head(digits)
+```
+
+**Using CSS selectors to scrap the names section**. 
+
+Then converting the html section to text & characters
+```{r}
+name_html_type<-html_nodes(Webpage,"td td:nth-child(2) p")
+name<-html_text(name_html_type[2:274])
+name<-as.character(name)
+str(name)
+```
+**creating a dataframe of my vectors**
+```{r}
+df<-data.frame(name, dato,digits,Kunngjorings_Type, stringsAsFactors = F)
+glimpse(df)
+View(df)
+```
+**Selecting companies in Troms county**
+```{r}
+Bedrift_kungjoringer<-df[grep("AS", df$name),]
+str(Bedrift_kungjoringer)
+View(Bedrift_kungjoringer)
+```
+**companies who have been declared compulsory dissolution (Tvangsoppløsning)**
+```{r}
+Tvangsoppløste_B<-Bedrift_kungjoringer[grep("Tvangsoppløsning", Bedrift_kungjoringer$Kunngjorings_Type),]
+str(Tvangsoppløste_B)
+View(Tvangsoppløste_B)
+```
+**ploting "kunngjorings_type" and date**
+```{r}
+qplot(data = Bedrift_kungjoringer,dato,fill = Kunngjorings_Type, binwidth = 50)
+```
+
+**creating frequency data of "kunngjoringer"**
+```{r}
+Kunngjorings_data<-count(Bedrift_kungjoringer,"Bedrift_kungjoringer$Kunngjorings_Type")
+View(Kunngjorings_data)
+```
+
+
+
