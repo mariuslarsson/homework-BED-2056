@@ -31,23 +31,13 @@ Do this as soon as possible. I have to grant you write permission to this reposi
 After you've been invited to modify this repository, clone it as we did in class (or see lecture notes). You will then create a **new** Rmarkdown document (.Rmd) which you will place in the **submissions** folder. The name of the .Rmd document should be `git_submission_your_name.Rmd`. The .Rmd document should contain the following:
 
 ```
-- Set echo in opts_chunk to FALSE
-- Create a plot of something interesting or something random. 
-  It doesn't really matter as long as you create a plot of some data. 
-  You can modify and style it as much or as little as you like.
-- In 1-4 sentences either above or bellow the plot, explain what the plot shows.
-- Create a new **line** plot with something different than the previous. This must be a line plot.
-- Change the size of this plot in the chunk options using fig.height and fig.width
-- In 1-4 sentences either above or bellow the plot, explain what the plot shows.
-- Create separate sections for each plot using double hashtags
-- title: "Mandatory homework assignment submission"
-- author: "your name"
+*Required content for the .Rmd will be released soon*
 ```
 
 When you're done with the .Rmd document, knit it as a .html. Then commit and push both of your .Rmd and .html file to the repository. 
 
 *PS. There might be changes to the remote repository between your clone and push. As we discussed in class, you should do a pull/fetch-merge before pushing your submission. If you try to push after remote has changed without pulling first, git will give you a warning. Don't worry, just read the warning and follow the instructions (this is perfectly normal and shold be expected when colaborating on projects using git). You will probably just have to pull -> commit with all the new files -> push.*
 
-See the EXAMPLE_git_submission_marius_larsson.Rmd for an example.
+See the EXAMPLE_git_submission_marius_larsson.Rmd for an example. **This example contains example code for the mandatory homework assignment given last year. The assignment given this year will not nessescarily be the same**
 
 Remember: your submission will be open for everyone to see. 
