@@ -28,10 +28,15 @@ Do this as soon as possible. I have to grant you write permission to this reposi
 
 ## Step 2
  
-After you've been invited to modify this repository, clone it as we did in class (or see lecture notes). You will then create a **new** Rmarkdown document (.Rmd) which you will place in the **submissions** folder. The name of the .Rmd document should be `git_submission_your_name.Rmd`. The .Rmd document should contain the following:
+After you've been invited to modify this repository, clone it as we did in class (or see lecture notes). Open the .R-project and then create a **new** Rmarkdown document (.Rmd) which you will place in the **submissions** folder. The name of the .Rmd document should be `git_submission_your_name.Rmd`. The .Rmd document should contain the following:
 
 ```
-*Required content for the .Rmd will be released soon*
+- Remove everything in the .Rmd-file **except** the setup chunk and YAML header.
+- Load the function found in the .R-file named "plotBED.R" using source() in your setup chunk. The file is located in the submission/R folder. The function is named plotBED() and will generate a simple line plot. The available arguments are "y" and "x" corresponding to the y and x axis in a plot. It works in the exact same way as plot(), but with a few moditifactions. Example usage: plotBED(x=c(1,2,3), y=c(14, 45, 31))
+- Load the data file "dataBED.csv" using read.csv() in your setup chunk. The file is located in the submission/data folder. Assign it to a variable named "data", i.e. "data <- read.csv()". The data file contains guest nights at hotels in Troms county for the year 2018 where the column "date" is the month, and "guestNights2018" are the guest nights for their respective months.
+- Place the function plotBED() in its own chunk. Use the column "date" as the x-argument and the column "guestNights2018" as the y-argument, from the "dataBED.csv"-data to generate a plot output.
+- Create an approriate header above the plot.
+- Under the plot, write a dynamic text where the output should be which month has the most amount of guest nights, and how many guest nights it is. 
 ```
 
 When you're done with the .Rmd document, knit it as a .html. Then commit and push both of your .Rmd and .html file to the repository. 
