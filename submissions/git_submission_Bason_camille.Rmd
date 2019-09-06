@@ -1,0 +1,29 @@
+---
+title: "  homework BASON Camille"
+author: "BasonCamille"
+date: "06/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("R/plotBED.R")
+data <- read.csv("data/dataBED.csv")
+library(tidyverse)
+```
+
+## Graph of guest Nights by months in 2018
+
+```{r}
+plotBED(data$date, data$guestNights2018, main="Guest Nights in 2018", xlab="Month", ylab="Guest Nights")
+```
+
+```{r}
+maxNights <-  max(data$guestNights2018)
+
+MaxMonth <- data%>% filter(guestNights2018==maxNights) %>% select(date)
+
+```
+
+The maximum of nights is `r maxNights`and it takes place in `r MaxMonth`.
+
