@@ -1,0 +1,32 @@
+---
+title: "git_submission_Chiara_Laudani.Rmd"
+author: "Chiara Laudani"
+date: "9/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+if(isTRUE(getOption('knitr.in.progress'))) { 
+  source("../submissions/R/plotBED.R")
+  data <- read.csv("../submissions/data/dataBED.csv")
+} else {
+  source("submissions/R/plotBED.R")
+  data <- read.csv("submissions/data/dataBED.csv")
+}
+```
+
+```{r}
+data_plot <- plotBED(x=data$date, y=data$guestNights2018, main="Overview of guest nights at hotels in Tromsø county in 2018", xlab="Month", ylab="Guest Nights")
+```
+```{r include=FALSE}
+getMonth <- function(date_string) {
+  date <- as.POSIXct(date_string)
+  format(date,"%m") #get month
+  format(date,"%B") #to string
+} 
+```
+
+
+The month with the highest amount of guest nights was `r getMonth(data[max(data$guestNights2018) == data$guestNights2018, 1])` with a grand total of `r max(data$guestNights2018)` guest nights!
