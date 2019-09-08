@@ -1,0 +1,28 @@
+---
+title: "git_submission_ivan_kashilov"
+author: "Ivan Kashilov"
+date: "September 8, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE}
+source('R/plotBED.R')
+data <- read.csv('data/dataBED.csv')
+
+plotBED(x=data$date,y=data$guestNights2018, main='Mounthly number of guests in 2018', xlab="Month", ylab="Guests")
+
+max_guests <- max(data$guestNights2018)
+
+max_date <- data$date[data$guestNights2018 == max_guests]
+
+library(lubridate)
+# Getting month from date string and the month's abbreviation
+max_month <- month.abb[month(max_date)]
+
+```
+
+#### *Maximum guests were in `r max_month`: `r max_guests` persons.*
