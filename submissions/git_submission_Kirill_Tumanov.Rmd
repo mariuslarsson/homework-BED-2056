@@ -1,0 +1,28 @@
+---
+title: "git_submission_Kirill_Tumanov"
+author: "Kirill Tumanov"
+date: "08 09 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+source("../submissions/R/plotBED.R")
+```
+
+```{r}
+data <- read.csv("../submissions/data/dataBED.csv")
+```
+##Plot, Guest Nights in Tromso 2018
+```{r}
+plotBED(x = data$date, y = data$guestNights2018, main = "Guest nights at hotels in Troms county 2018", xlab = "Month", ylab = "Guest nights")
+```
+
+```{r}
+max_visitors <- max(data$guestNights2018)
+max_m <- data %>% filter(guestNights2018 == max_visitors)
+max_month <- as.Date(max_m$date)
+```
+
+The month with the highest amount of guest nights at hotels in Troms county 2018 is `r max_month` with a total of `r max_visitors` nights.
