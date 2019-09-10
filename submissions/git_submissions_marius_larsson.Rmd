@@ -1,0 +1,23 @@
+---
+title: "Untitled"
+author: "Marius Larsson"
+date: "9/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+data <- read.csv("submissions/data/dataBED.csv")
+source("submissions/R/plotBED.R")
+```
+
+## SUbmission
+
+```{r}
+plotBED(data$date, data$guestNights2018)
+```
+
+```{r}
+max(data$guestNights2018)
+```
+
