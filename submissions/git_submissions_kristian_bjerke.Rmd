@@ -1,0 +1,31 @@
+---
+title: "Assignment 1"
+author: "Kristian Bjerke"
+date: "10/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+```{r}
+source("C:/Users/krizz/Documents/R/Assignment 1/submissions/R/plotBED.R")
+
+read.csv("C:/Users/krizz/Documents/R/Assignment 1/submissions/data/dataBED.csv")
+
+data <- read.csv("C:/Users/krizz/Documents/R/Assignment 1/submissions/data/dataBED.csv")
+
+plotBED(x=data$date, y=data$guestNights2018, main="Total hotel guests in Tromsø 2018", xlab="Month", ylab="Number of nights")
+
+mostnights <- max(data$guestNights2018)
+mostdate <- which.max(data$guestNights2018)
+
+mostdate <- data[mostdate,"date"]
+
+paste("The date with the most nights is", mostdate, "with a total of", mostnights, "stays.")
+
+
+```
+
