@@ -46,3 +46,5 @@ When you're done with the .Rmd document, knit it as a .html. Then commit and pus
 See the EXAMPLE_git_submission_marius_larsson.Rmd for an example. **This example contains example code for the mandatory homework assignment given last year. The assignment given this year will not nessescarily be the same**
 
 Remember: your submission will be open for everyone to see. 
+
+-
