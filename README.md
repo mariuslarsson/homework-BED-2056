@@ -41,7 +41,7 @@ After you've been invited to modify this repository, clone it as we did in class
 
 When you're done with the .Rmd document, knit it as a .html. Then commit and push both of your .Rmd and .html file to the repository. 
 
-*PS. There might be changes to the remote repository between your clone and push. As we discussed in class, you should do a pull/fetch-merge before pushing your submission. If you try to push after remote has changed without pulling first, git will give you a warning. Don't worry, just read the warning and follow the instructions (this is perfectly normal and shold be expected when colaborating on projects using git). You will probably just have to pull -> commit with all the new files -> push.*
+*PS. There might be changes to the remote repository between your clone and push. As we discussed in class, you should do a pull before pushing your submission. If you try to push after remote has changed without pulling first, git will give you a warning. Don't worry, just read the warning and follow the instructions (this is perfectly normal and shold be expected when colaborating on projects using git). You will probably just have to pull -> commit with all the new files -> push.*
 
 See the EXAMPLE_git_submission_marius_larsson.Rmd for an example. **This example contains example code for the mandatory homework assignment given last year. The assignment given this year will not nessescarily be the same**
 
