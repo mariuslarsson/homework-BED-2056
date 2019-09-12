@@ -7,7 +7,30 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(lubridate)
 ```
+
+```{r}
+source("R/plotBED.R")
+getwd()
+```
+
+```{r}
+dataBED<-read.csv("data/dataBED.csv")
+getwd
+```
+
+```{r}
+data <-dataBED
+```
+
+```{r}
+plotBED(data$date,data$guestNights2018, main= "evolution of number of guest  in 2018",xlab= "month", ylab= " guest night")
+maxmonth= data[data$guestNights2018==max(data$guestNights2018),"date"]
+maxmonth= month(maxmonth, label= T, abbr=F)
+```
+
 
 ## R Markdown
 
