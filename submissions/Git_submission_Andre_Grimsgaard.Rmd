@@ -1,7 +1,7 @@
 ---
-title: "homework1"
+title: "hwbed2056"
 author: "Andre"
-date: "10 9 2019"
+date: "12 9 2019"
 output: html_document
 ---
 
@@ -9,36 +9,22 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ```{r}
 source("C:/Users/Public/homework-BED-2056/submissions/R/plotBED.R")
 ```
 
-
 ```{r}
 read.csv("C:/Users/Public/homework-BED-2056/submissions/data/dataBED.csv")
-
-
 ```
 
 ```{r}
-data <- read.csv("C:/Users/Public/homework-BED-2056/submissions/data/dataBED.csv")
+data <-read.csv("C:/Users/Public/homework-BED-2056/submissions/data/dataBED.csv")
+plotBED(x=data$date,y=data$guestNights2018, main= "guest per month", xlab= "month", ylab="guest")
+maxnigths <- max(data$guestNights2018)
+max_months <- which.max(data$guestNights2018)
+max_months <- data[max_months,"date"]
+
+paste("date with most nigths is", max_months, "with the amout of", maxnigths)
 
 ```
-
-
-
-
-```{r}
-plotBED(x=data$date,y=data$guestNights2018,xlab="date", ylab="guest",main="2018 guest per month")
-max_guest <- max(data$guestNights2018)
-maxmonth <- which.max(data$guestNights2018)
-maxmonth <-data[maxmonth,"date"]
-```
-
-```{r}
-paste("We can see at in", maxmonth, "is the bussiest month in tromso with this amount", max_guest)
-```
-
-
 
