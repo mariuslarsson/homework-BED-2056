@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 source("R/plotBED.R")
 data <- read.csv("data/dataBED.csv")
 library(tidyverse)
+library(lubridate)
 ```
 
 ## Graph of guest Nights by months in 2018
@@ -19,11 +20,11 @@ plotBED(data$date, data$guestNights2018, main="Guest Nights in 2018", xlab="Mont
 ```
 
 ```{r}
+data$date <- as.Date(data$date) 
 maxNights <-  max(data$guestNights2018)
-
-MaxMonth <- data%>% filter(guestNights2018==maxNights) %>% select(date)
-
+MaxMonth <- data %>% filter(guestNights2018==maxNights) 
+m<- MaxMonth$date
+m <- month(m, label=TRUE, abbr=FALSE)
 ```
 
-The maximum of nights is `r maxNights`and it takes place in `r MaxMonth`.
-
+The maximum of nights is `r maxNights` and it takes place in `r m`. 

@@ -1,0 +1,60 @@
+---
+title: "git_submission_Niklas_Jespersen.Rmd"
+author: "Niklas Jespersen"
+date: "10/9/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+- Load the function found in the .R-file named "plotBED.R" using source() in your setup chunk. The file is located in the submission/R folder. The function is named plotBED() and will generate a simple line plot. The available arguments are "y" and "x" corresponding to the y and x axis in a plot. It works in the exact same way as plot(), but with a few moditifactions. Example usage can be found in the "plotBED.R"-file
+
+```{r}
+source("R/plotBED.R")
+getwd()
+```
+
+
+
+- Load the data file "dataBED.csv" using read.csv() in your setup chunk. The file is located in the submission/data folder. Assign it to a variable named "data", i.e. "data <- read.csv()". The data file contains guest nights at hotels in Troms county for the year 2018 where the column "date" is the month, and "guestNights2018" are the guest nights for their respective months.
+
+```{r}
+Data=read.csv("data/dataBED.csv")
+View(Data)
+```
+
+
+- Place the function plotBED() in its own chunk. Use the column "date" as the x-argument and the column "guestNights2018" as the y-argument, from the "dataBED.csv"-data to generate a plot output.
+
+```{r}
+Max_Guestnights=max(Data$guestNights2018)
+Max_date=as.Date(Data[Data$guestNights2018==Max_Guestnights,"date"])
+
+```
+
+```{r}
+plotBED(Data$date, Data$guestNights2018, main="Guest nights 2018",sub=paste("The month with the most guest was",  Max_date, "with", Max_Guestnights, "stays"))
+```
+
+
+- Create an approriate header above the plot.
+- Under the plot, write a dynamic text where the output should be which month has the most amount of guest nights, and how many guest nights it is. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

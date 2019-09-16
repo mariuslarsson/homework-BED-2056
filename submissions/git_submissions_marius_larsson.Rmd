@@ -1,0 +1,36 @@
+---
+title: "Mandatory assignment BED-2056"
+author: "Marius Larsson"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+if(isTRUE(getOption("knitr.in.progress"))){
+  data <- read.csv("data/dataBED.csv", stringsAsFactors = FALSE)
+
+  source("R/plotBED.R")
+} else {
+  data <- read.csv("submissions/data/dataBED.csv", stringsAsFactors = FALSE)
+
+  source("submissions/R/plotBED.R")
+}
+
+
+```
+
+### Guest nights in Troms county, 2018
+
+```{r}
+plotBED(data$date, data$guestNights2018)
+```
+
+```{r}
+maxGuestNights <- max(data$guestNights2018)
+maxGuestsDate <- as.Date(data[data$guestNights2018==maxGuestNights, "date"])
+
+```
+
+For the month of `r format(maxGuestsDate, "%B")`, the month with highest activity, the total number of guest nights is `r format(maxGuestNights, big.mark=" ")`

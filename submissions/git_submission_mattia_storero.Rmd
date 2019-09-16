@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "m"
+date: "10/9/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("R/plotBED.R")
+data <- read.csv("data/dataBED.csv")
+
+getwd()
+```
+
+## Guest nights at hotels in Troms county for the year 2018
+
+```{r}
+plotBED(y=data$guestNights2018, x=data$date)
+
+```
+
+```{r}
+maxGuestNights <- max(data$guestNights2018)
+maximumMonthIndex <- which.max(data$guestNights2018)
+maxGuestsDate <- data[data$guestNights2018==maxGuestNights, "date"]
+maxGuestNights
+maximumMonthIndex
+maxGuestsDate
+colnames(data)
+data$date
+data[10, "date"]
+```
+
+
