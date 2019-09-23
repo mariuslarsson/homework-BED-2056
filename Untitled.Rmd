@@ -1,0 +1,207 @@
+---
+title: "Task 2"
+author: "moi"
+date: "9/22/2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+
+#install.packages("rjson")
+#install.packages("rjstat")
+#install.packages("httr")
+#install.packages("tidyverse")
+#install.packages("tidyr")
+#install.packages("dplyr")
+
+library(rjson)
+library(rjstat)
+library(httr)
+library(tidyverse)
+library(tidyr)
+library(dplyr)
+
+#Data95274 - Counties
+
+url <- "http://data.ssb.no/api/v0/dataset/95274.json?lang=no"
+
+datanew <- GET(url)
+str(datanew)
+datanewtext <- content(datanew, as="text")
+
+datanewparsed <- content(datanew, as="parsed") 
+
+dataJson <- fromJSONstat(datanewtext)
+dataJson
+str(dataJson)
+
+dataJ <- dataJson$`03616: Hotell og liknande overnattingsbedrifter. Kapasitetsutnytting og pris per rom, etter region, måned og statistikkvariabel`
+
+dataJ <- dataJ%>%rename("date"="måned" ,"variable"="statistikkvariabel")
+
+dataJ$date <- as.character(dataJ$date)
+dataJ$date <- str_replace(dataJ$date,"M", "01")
+dataJ$date <- as.Date(dataJ$date, format="%Y%d%m")
+
+dataJ$variable <- recode(dataJ$variable, 
+          "Kapasitetsutnytting av senger (prosent)" = "Beds percentage capacity utilization",
+          "Kapasitetsutnytting av rom (prosent)" = "Rooms percentage capacity utilization", 
+          "Pris per rom (kr)" = "Price per room (kr)") 
+  
+#Data95276 - The whole country
+  
+url2 <- "http://data.ssb.no/api/v0/dataset/95276.json?lang=no"
+
+datanew2 <- GET(url2)
+str(datanew2)
+datanewtext2 <- content(datanew2, as="text")
+
+datanewparsed2 <- content(datanew2, as="parsed") 
+
+dataJson2 <- fromJSONstat(datanewtext2)
+dataJson2
+str(dataJson2)
+
+dataJ2 <- dataJson2$`03616: Hotell og liknande overnattingsbedrifter. Kapasitetsutnytting og pris per rom, etter region, måned og statistikkvariabel`
+dataJ2
+
+dataJ2 <- dataJ2%>%rename("date"="måned" ,"variable"="statistikkvariabel")
+
+dataJ2$date <- as.character(dataJ2$date)
+dataJ2$date <- str_replace(dataJ2$date,"M", "01")
+dataJ2$date <- as.Date(dataJ2$date, format="%Y%d%m")
+
+dataJ2$variable <- recode(dataJ2$variable, 
+          "Kapasitetsutnytting av senger (prosent)" = "Beds percentage capacity utilization",
+          "Kapasitetsutnytting av rom (prosent)" = "Rooms percentage capacity utilization", 
+          "Pris per rom (kr)" = "Price per room (kr)") 
+
+#Mergin the two data frame
+
+mergindata <- rbind(dataJ, dataJ2)
+
+#Difference between county average room price and the national average room price per month
+
+mergindata$month <- format(mergindata$date,"%m") 
+
+counties_average_by_month <- mergindata %>% 
+    filter(value != 0.0, variable == "Price per room (kr)", region != "Hele landet") %>% 
+    group_by(month) %>% 
+    summarise(mean_room_price_counties = mean(value))
+
+country_average_by_month <- mergindata %>% 
+    filter(value != 0.0, variable == "Price per room (kr)", region == "Hele landet") %>%
+    group_by(month) %>%
+    summarise(mean_room_price_country = mean(value))
+
+jointable <- left_join(counties_average_by_month, country_average_by_month, by="month")
+jointable$diff_counties_country <- jointable$mean_room_price_country - jointable$mean_room_price_counties 
+
+#County (on average) that has the highest positive and negative difference in price per month
+
+counties_average_by_region <- mergindata %>% 
+  filter(value != 0.0, variable == "Price per room (kr)", region != "Hele landet") %>%
+  group_by(region, month) %>% 
+  summarise(mean_room_price_counties = mean(value))
+
+country_average_by_region <- mergindata %>% 
+  filter(value != 0.0, variable == "Price per room (kr)", region == "Hele landet") %>%
+  group_by(month) %>% 
+  summarise(mean_room_price_country = mean(value))
+
+counties_average_by_region$diff_country <- counties_average_by_region$mean_room_price_counties - country_average_by_region$mean_room_price_country
+
+max_diff <- str_sub(counties_average_by_region[counties_average_by_region$diff_country == max(counties_average_by_region$diff_country),1])
+
+min_diff <- str_sub(counties_average_by_region[counties_average_by_region$diff_country == min(counties_average_by_region$diff_country),1])
+
+max_month <- str_sub(counties_average_by_region[counties_average_by_region$diff_country == max(counties_average_by_region$diff_country),2])
+
+max_month <- as.Date(paste0("2000-",max_month,"-1"), format="%Y-%m-%d") 
+
+min_month <- str_sub(counties_average_by_region[counties_average_by_region$diff_country == min(counties_average_by_region$diff_country),2])
+
+min_month <- as.Date(paste0("2000-",min_month,"-1"), format="%Y-%m-%d") 
+
+#Difference between each county average room price and the national average room price per year
+
+mergindata$year <- format(mergindata$date,"%Y")
+
+counties_average_by_year <- mergindata %>% 
+  filter(value != 0.0, variable == "Price per room (kr)", region != "Hele landet") %>% 
+  group_by(year) %>% 
+  summarise(mean_room_price_counties = mean(value))
+
+country_average_by_year <- mergindata %>% 
+  filter(value != 0.0, variable == "Price per room (kr)", region == "Hele landet") %>%
+  group_by(year) %>% 
+  summarise(mean_room_price_country = mean(value))
+
+jointable2 <- left_join(counties_average_by_year,country_average_by_year, by="year")
+jointable2$diff_rp <- jointable2$mean_room_price_country - jointable2$mean_room_price_counties
+
+plot(x= jointable2$year, y = jointable2$diff_rp, type = "l", cex.lab=0.85, cex.main=0.85, col="green", xlab="Year", ylab="Room price difference", main="Difference of average country's room price compared to average counties's room price by year")
+
+#County (on average) that has the highest positive and negative difference in price per year
+
+counties_average_by_region2 <- mergindata %>% 
+  filter(value != 0.0, variable == "Price per room (kr)", region != "Hele landet") %>% 
+  group_by(region, year) %>% 
+  summarise(mean_room_price_counties = mean(value))
+
+country_average_by_region2 <- mergindata %>% 
+  filter(value != 0.0, variable == "Price per room (kr)", region == "Hele landet") %>%
+  group_by(region, year) %>% 
+  summarise(mean_room_price_country = mean(value))
+
+# Missing value for some region and some years ??? What to do ???
+
+counties_average_by_region2 <-counties_average_by_region2[order(counties_average_by_region2$region,counties_average_by_region2$year),]
+
+counties_average_by_region2$diff_country <- counties_average_by_region2$mean_room_price_counties - country_average_by_region2$mean_room_price_country
+
+counties_average_by_region2 <- counties_average_by_region2 %>% drop_na()
+
+max_diff_2 <- str_sub(counties_average_by_region2[counties_average_by_region2$diff_country == max(counties_average_by_region2$diff_country),1])
+
+min_diff_2 <- str_sub(counties_average_by_region2[counties_average_by_region2$diff_country == min(counties_average_by_region2$diff_country),1])
+
+max_year <- str_sub(counties_average_by_region2[counties_average_by_region2$diff_country == max(counties_average_by_region2$diff_country),2])
+
+min_year <- str_sub(counties_average_by_region2[counties_average_by_region2$diff_country == min(counties_average_by_region2$diff_country),2])
+
+#Plot of the monthly price difference for Troms county from 1999 until today
+
+troms_county <- mergindata %>% 
+  filter(region == "Troms - Romsa", date >= "1999-01-01", value != 0.0, variable  == "Price per room (kr)")
+
+troms_country <- mergindata %>% 
+  filter(region == "Hele landet", date >= "1999-01-01", value != 0.0, variable == "Price per room (kr)")
+
+troms_county$diff_country <- troms_county$value - troms_country$value
+
+plot(x= troms_county$date, y = troms_county$diff_coutry, type = "l", cex.lab=0.85, cex.main=0.85, col="purple",
+     xlab="Month", 
+     ylab="Room price difference", 
+     main="Difference of average country's room price compared to average Troms county's room price by month")
+
+#Correlation between room capacity and price since January 2010 or not
+
+data_room_capacity <- mergindata %>% 
+  filter(variable == "Rooms percentage capacity utilization") %>% 
+  mutate(room_capacity_value = value) %>% 
+  select("region","date","room_capacity_value")
+
+data_price <- mergindata %>% 
+  filter(variable == "Price per room (kr)") %>% 
+  mutate(price_value = value) %>% 
+  select("region","date","price_value")
+
+room_price_joined <- left_join(data_room_capacity,data_price, by = c("region", "date"))
+
+# had to find how to do correlations
+
+```
+
