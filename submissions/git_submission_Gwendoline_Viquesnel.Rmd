@@ -1,0 +1,37 @@
+---
+title: "git_Submission_Gwendoline_Viquesnel.Rmd"
+author: "Gwendoline Viquesnel"
+date: "9/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(lubridate)
+```
+
+```{r}
+source("R/plotBED.R")
+getwd()
+```
+
+```{r}
+dataBED <- read.csv("data/dataBED.csv")
+getwd()
+```
+
+```{r}
+data <- dataBED
+```
+
+# First attempt to create a beautiful plot
+
+```{r}
+plotBED(x = data$date, y = data$guestNights2018, main="Evolution of the number of guest nights in 2018", xlab="Month", ylab="Guest nights")
+bestmonth <- data[data$guestNights2018 == max(data$guestNights2018), "date"]
+bestmonth <- month(bestmonth, label=T, abbr=F)
+```
+
+The month of `r bestmonth` has the most amount of guest nights with  `r max(data$guestNights2018)` guest nights.
+
