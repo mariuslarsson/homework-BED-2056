@@ -1,0 +1,102 @@
+---
+title: "Task2-04oct"
+author: "moi"
+date: "10/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(httr)
+library(dplyr)
+library(knitr)
+library(rvest)
+library(lubridate)
+library(ggplot2)
+
+```
+
+```{r}
+
+#Import data from url
+Companyregistration_webpage <- read_html("https://w2.brreg.no/kunngjoring/kombisok.jsp?datoFra=01.01.2018&datoTil=01.01.2019&id_region=100&id_fylke=-+-+-&id_niva1=2&id_bransje1=0")
+
+#Analysis structure of imported data 
+Companyregistration_webpage
+str(Companyregistration_webpage)
+
+#Scrap according to the instructions
+Scrap <- html_nodes(Companyregistration_webpage, xpath = "//table") 
+Scrap2 <- html_nodes(Scrap, "table")
+
+#Transform data into an html table
+tabletask2 <- html_table(Scrap2[[1]])
+
+#Look at the structure of the data frame to know what to clean : 5 first rows empty and 1,3,5,7,9 columns also and col 4 and 8 useless
+
+```
+
+```{r}
+
+# Cleaning the data
+
+clean_tabletask2 <- tabletask2 %>% 
+               select(X2,X6) %>% #keep columns that contains usefull data
+               slice(6:2227) %>% #removing the 5 first rows that are empty
+               rename(Company_name = X2, Registration_dat = X6) %>% #renaming columns
+               mutate(county = "") #creating a county variable
+
+#After searching rows corresponding to each county 
+  #Nordland = row 1
+  #Troms = row 1056
+  #Finnmark = row 1810
+
+#Adding counties to the table
+clean_tabletask2[c(2:1054),"county"] <- "nordland"
+clean_tabletask2[c(1057:1808),"county"] <- "troms"
+clean_tabletask2[c(1811:2221),"county"] <- "finnmark"
+
+#Now that the 3 rows are useless we can remove them
+final_tabletask2 <- clean_tabletask2[-c(1,1055,1056,1809,1810,2222),]
+
+```
+
+
+
+```{r}
+
+# Making the plots
+
+#1st plot : Number of companies registered per month
+  #Creating a month variable
+final_tabletask2$Registration_dat <- as.Date(final_tabletask2$Registration_dat, format="%d.%m.%Y") 
+  #Getting date of registration to date format
+final_tabletask2$month <- month(final_tabletask2$Registration_dat, label=TRUE, abbr=FALSE)
+
+  #Creating the plot
+ggplot(final_tabletask2, aes(month)) + 
+  geom_bar(fill="green", colour="green") + 
+  xlab("Month") + 
+  ylab("Number of companies") + 
+  ggtitle("Number of companies registered per month")
+
+### for later suppress NA column if enough time to find a solution
+
+#2nde plot : Number of companies registered per county
+ggplot(final_tabletask2, aes(county)) + 
+  geom_bar(fill="pink", colour="pink") + 
+  xlab("Month") + 
+  ylab("County") + 
+  ggtitle("Number of companies registered per county")
+
+#3rd plot : Number of companies registered per month and per county
+ggplot(final_tabletask2, aes(month) )+ 
+  geom_bar(aes(fill=county), colour = "blue") + 
+  xlab("Month") + 
+  ylab("Number of companies") + 
+  ggtitle("Number of companies registered per month and per county")
+
+```
+
+
